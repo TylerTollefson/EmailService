@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
 
-namespace UniqueEmailService
+namespace EmailService
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace UniqueEmailService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Unique Emails Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Email Service Api", Version = "v1" });
             });
         }
 
@@ -46,7 +46,7 @@ namespace UniqueEmailService
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Unique Email Service");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Email Service");
                 c.RoutePrefix = string.Empty;
             });
 

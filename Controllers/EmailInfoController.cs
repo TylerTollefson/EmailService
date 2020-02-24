@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UniqueEmailService.Models;
-using UniqueEmailService.Helpers;
+using EmailService.Models;
+using EmailService.Helpers;
 
-namespace UniqueEmailService.Controllers
+namespace EmailService.Controllers
 {
     [ApiController]
-    [Route("/api/UniqueEmailService")]
+    [Route("/api/EmailService")]
     public class EmailInfoController : ControllerBase
     {
 
@@ -24,7 +19,7 @@ namespace UniqueEmailService.Controllers
         }
 
         [HttpPost]
-        [Route("/api/UniqueEmailService/RetrieveUniqueCount")]
+        [Route("/api/EmailService/RetrieveUniqueCount")]
         public IActionResult UniqueEmailCount(List<string> emailList)
         {
             EmailValidator helper = new EmailValidator();

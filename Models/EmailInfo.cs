@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 
-namespace UniqueEmailService.Models
+namespace EmailService.Models
 {
     public class EmailInfo
     {

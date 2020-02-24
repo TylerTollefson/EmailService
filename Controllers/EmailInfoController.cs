@@ -23,30 +23,17 @@ namespace UniqueEmailService.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("/api/UniqueEmailService/GetUniqueCount")]
-        public IActionResult GetUniqueCount()
-        {
-            try
-            {
-                return Ok(EmailInfo.getCurrent().GetUniqueCount());
-            } catch (Exception e)
-            {
-                return BadRequest($"Encountered an exception retrieving unique count {e.Message}");
-            }
-            
-        }
-
         [HttpPost]
-        [Route("/api/UniqueEmailService/SetEmailList")]
-        public IActionResult SetEmailList(List<string> emailList)
+        [Route("/api/UniqueEmailService/RetrieveUniqueCount")]
+        public IActionResult UniqueEmailCount(List<string> emailList)
         {
             EmailValidator helper = new EmailValidator();
+            EmailInfo current = EmailInfo.getCurrent();
             if (helper.IsValidEmailList(emailList))
             {
-                EmailInfo.getCurrent().SetEmailList(emailList);
-                EmailInfo.getCurrent().CleanseEmailList();
-                return Ok("Email list has been successfully set.");
+                current.SetEmailList(emailList);
+                current.CleanseEmailList();
+                return Ok($"Count of unique emails is {current.GetUniqueCount()}");
             } else
             {
                 return BadRequest("Email list must contain at least one valid email.");

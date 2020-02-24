@@ -3,6 +3,7 @@ Simple ASP .NET Core webservice that gets a unique count of emails, provided a l
 Expanding into an email validation service that can validate a single email or a list of emails.
 
 POST Methods:
+
 RetrieveUnqiueCount - Provided a list of emails, it will return the amount of unique emails in the list.
 
 TODO - isValidEmail - Provided a single email, will return whether or not the email is valid.

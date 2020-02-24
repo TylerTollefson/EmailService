@@ -12,17 +12,19 @@ namespace EmailService.Controllers
     {
 
         private readonly ILogger<EmailInfoController> _logger;
+        private readonly EmailValidator helper;
 
         public EmailInfoController(ILogger<EmailInfoController> logger)
         {
             _logger = logger;
+            helper = new EmailValidator();
         }
 
         [HttpPost]
         [Route("/api/EmailService/RetrieveUniqueCount")]
         public IActionResult UniqueEmailCount(List<string> emailList)
         {
-            EmailValidator helper = new EmailValidator();
+            
             EmailInfo current = EmailInfo.getCurrent();
             if (helper.IsValidEmailList(emailList))
             {
@@ -33,6 +35,14 @@ namespace EmailService.Controllers
             {
                 return BadRequest("Email list must contain at least one valid email.");
             }
+        }
+
+        [HttpPost]
+        [Route("/api/EmailService/isValidEmail")]
+        public IActionResult IsValidEmail(string email)
+        {
+            return Ok(helper.IsValidEmail(email));
+            
         }
     }
 }
